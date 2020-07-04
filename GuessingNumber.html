@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Guessing Number</title>
+</head>
+<body>
+	<h1>Guessing Number</h1>
+	<p id="message"></p>
+	<input type="number" id="userGuess" />
+	<input type="button" id="guessButton" value="Guess" />
+	<p id="pastGuess"></p>
+	<script type="text/javascript">
+		let guessBtn = document.getElementById("guessButton");
+		let displayMessage = document.getElementById("message");
+		let result = 12;
+		let message = "";
+		let pastGuess = "";
+		let color = "";
+		let limit = 10;
+		guessBtn
+				.addEventListener(
+						'click',
+						function() {
+							if (limit > 0) {
+								let userGuess = parseInt(document
+										.getElementById("userGuess").value);
+								pastGuess += (userGuess + "<br>");
+								if (userGuess > result) {
+									message = `Your guess was too high, guess lower. You have ${--limit} guesses left.`;
+									color = "red";
+								} else if (userGuess < result) {
+									message = `Your guess was too low, guess higher. You have ${--limit} guesses left.`;
+									color = "red";
+								} else {
+									message = "Congratulations!! You guessed correctly.";
+									color = "lightGreen";
+								}
+								document.getElementById("pastGuess").innerHTML = pastGuess;
+							} else {
+								color = "transparent"
+								message = "You have use all of your chance to guess";
+							}
+							displayMessage.style.backgroundColor = color;
+							displayMessage.innerHTML = message;
+						})
+	</script>
+</body>
+</html>
